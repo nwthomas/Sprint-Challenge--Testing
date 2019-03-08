@@ -1,6 +1,6 @@
 const express = require("express");
 
-const games = require("../games/gamesModel.js");
+const Games = require("../games/gamesModel.js");
 
 const server = express();
 
@@ -11,8 +11,23 @@ server.get("/", async (req, res) => {
 });
 
 server.get("/games", async (req, res) => {
-  const rows = await games.getAll();
-  res.status(200).json(rows);
+  try {
+    const games = await Games.getAll();
+    res
+      .status(200)
+      .json({
+        message:
+          "The games array was retrieved from the database successfully.",
+        games
+      });
+  } catch (users) {
+    res
+      .status(500)
+      .json({
+        message: "There was an error processing your request.",
+        error: true
+      });
+  }
 });
 
 module.exports = server;

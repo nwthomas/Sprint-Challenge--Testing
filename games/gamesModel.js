@@ -25,7 +25,7 @@ function remove(id) {
 }
 
 function getAll() {
-  return db("hobbits");
+  return db("games");
 }
 
 function findById(id) {
