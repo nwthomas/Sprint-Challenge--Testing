@@ -1,13 +1,14 @@
-
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+  return knex("games")
+    .truncate()
+    .then(function() {
+      return knex("games").insert([
+        { title: "Settlers of Catan" },
+        { title: "RISK" },
+        { title: "Poker" },
+        { title: "Camel Up" },
+        { title: "Monopoly" },
+        { title: "Colt Express" }
       ]);
     });
 };
