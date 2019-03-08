@@ -48,5 +48,18 @@ describe("server.js", () => {
       const res = await request(server).get("/games");
       expect(res.type).toBe("application/json");
     });
+
+    // Stretch goal of testing adding duplicate named game
+    it("should throw an error if a duplicate named game insertion attempt is made", async () => {
+      const newGame1 = { title: "Nathan", genre: "isDone", releaseYear: 2019 };
+      const newGame2 = { title: "Nathan", genre: "Family", releaseYear: 2222 };
+      const res1 = await request(server)
+        .post("/games")
+        .send(newGame1);
+      const res2 = await request(server)
+        .post("/games")
+        .send(newGame2);
+      expect(res2.status).toBe(405);
+    });
   });
 });

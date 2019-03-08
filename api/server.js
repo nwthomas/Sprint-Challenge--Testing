@@ -47,7 +47,7 @@ server.post("/games", async (req, res) => {
         });
       }
     } catch (error) {
-      res.status(500).json({
+      res.status(405).json({
         message: "There was an error processing your request.",
         error: true
       });
